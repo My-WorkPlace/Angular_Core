@@ -13,6 +13,7 @@ namespace WebApplication1.Services
     void Update(SheduleTask user);
     void Delete(int id);
     IEnumerable<SheduleTask> GetByDate(string date);
+    void DeleteObj(SheduleTask model);
   }
 
   public class TaskService : ITaskService
@@ -32,7 +33,7 @@ namespace WebApplication1.Services
     public SheduleTask GetById(int id) => _context.Tasks.Find(id);
 
     public IEnumerable<SheduleTask> GetByDate(string date) => _context.Tasks.Where(task => task.DateTime == date);
-
+    
     public SheduleTask Create(SheduleTask task)
     {
       _context.Tasks.Add(task);
@@ -53,6 +54,16 @@ namespace WebApplication1.Services
       if (task != null)
       {
         _context.Tasks.Remove(task);
+        _context.SaveChanges();
+      }
+    }
+
+    public void DeleteObj(SheduleTask model)
+    {
+      var res = _context.Tasks.FirstOrDefault(a => a.Title == model.Title);
+      if (res != null)
+      {
+        _context.Tasks.Remove(res);
         _context.SaveChanges();
       }
     }

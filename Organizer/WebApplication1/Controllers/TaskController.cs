@@ -69,5 +69,12 @@ namespace WebApplication1.Controllers
       _taskService.Delete(id);
       return Ok();
     }
+
+    [HttpPost("{DeleteObj}")]
+    public IActionResult DeleteObj([FromBody]SheduleTask model)
+    {
+      _taskService.DeleteObj(model);
+      return Ok();
+    }
   }
 }
