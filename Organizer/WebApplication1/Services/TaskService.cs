@@ -43,7 +43,6 @@ namespace WebApplication1.Services
 
     public void Update(SheduleTask task)
     {
-      //var taskFind = _context.Tasks.Find(task.Id);
       _context.Tasks.Update(task);
       _context.SaveChanges();
     }
